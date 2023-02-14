@@ -7,15 +7,12 @@
     "start": "node server/server.js",
     "start-dev": "nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm i && cd client && npm i && npm run build"
+    "build": "cd server && npm i && cd ../client && npm i && npm run build"
   },
   "engines": {
     "node": "16.14.0"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.2"
-  }
+  "license": "ISC"
 }
