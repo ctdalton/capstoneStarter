@@ -86,8 +86,17 @@ app.get('*', (req, res) => {
 });
 ```
 
-install path: `npm i path`
-create npm start-dev script: `"start-dev": "nodemon server/server.js",`
+install path:
+
+```
+npm i path
+```
+
+create npm start-dev script:
+
+```
+"start-dev": "nodemon server/server.js",
+```
 
 run the start-dev script. You should now see the React logo along with your the 'Hello from server!' message sent from the sever.
 
@@ -99,19 +108,38 @@ remove Git repo that is automatically created by create-react-app
 rm -rf client/.git
 ```
 
-intialize git: `git init`
-create .gitignore and add node_modules to it: `touch .gitignore && echo node_modules > .gitignore`
-add and commit all: `git add -A && git commit -m 'initial commit`
+intialize git:
+
+```
+git init
+```
+
+create .gitignore and add node_modules to it:
+
+```
+touch .gitignore && echo node_modules > .gitignore
+```
+
+add and commit all:
+
+```
+git add -A && git commit -m 'initial commit
+```
 
 create a new repo in github
-add the newly create repo as a remote `git remote add origin https://github.com/your-github-username/your-repo.git`
+add the newly create repo as a remote
+
+```
+git remote add origin https://github.com/your-github-username/your-repo.git
+```
+
 push your application: `git push -u origin master`
 
 # Deploy to Render
 
 [Deploy to Render guide](https://github.com/MediaComem/comem-archioweb/blob/main/guides/deploy-in-the-cloud.md)
 
-[Create a Render account](https://dashboard.render.com/register?next=/)
+[Create a Render account.](https://dashboard.render.com/register?next=/) If you register through GitHub, you will not have to link the two accounts together later.
 
 Go to your Render dashboard and create a new Web Service
 ![render dashboard](https://github.com/MediaComem/comem-archioweb/raw/main/guides/images/render-02-create.png)
