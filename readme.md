@@ -1,12 +1,22 @@
 [React/Node setup guide](https://www.freecodecamp.org/news/how-to-create-a-react-app-with-a-node-backend-the-complete-guide/)
 
-# Create node skeleton code.
+# Create parent npm project
+
+This project will hold the scripts needed for Render to build and run both the server and client apps
 
 `npm init -y`
 
+# Create server npm project and node skeleton code.
+
+`mkdir server && cd server && npm init -y`
+
 create basic express server:
 
-`mkdir server && touch server/server.js`
+`touch server.js`
+
+install express:
+
+`npm i express`
 
 ```
 // server/server.js
@@ -22,19 +32,18 @@ app.listen(PORT, () => {
 });
 ```
 
-install express: `npm i express`
-create npm start script: `"start": "node server/server.js",`
+create npm start script: `"start": "node server.js",`
 
 # Create react skeleton code
 
-`npx create-react-app client`
+run from parent directory: `npx create-react-app client`
 
 add proxy to client/package.json: `"proxy": "http://localhost:3001",`
 
 # Start both apps in different terminals
 
 ```
-npm start
+cd server && npm start
 cd client && npm start
 ```
 
@@ -72,6 +81,10 @@ export default App;
 update server/server.js to serve React files
 
 ```
+const path = require("path");
+```
+
+```
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../client/build')));
 
@@ -79,14 +92,11 @@ app.use(express.static(path.resolve(__dirname, '../client/build')));
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
-
-// All other GET requests not handled before will return our React app
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-});
 ```
 
-install path:
+in server project:
+
+install path
 
 ```
 npm i path
@@ -95,7 +105,7 @@ npm i path
 create npm start-dev script:
 
 ```
-"start-dev": "nodemon server/server.js",
+"start-dev": "nodemon server.js",
 ```
 
 run the start-dev script. You should now see the React logo along with your the 'Hello from server!' message sent from the sever.
@@ -147,7 +157,17 @@ Go to your Render dashboard and create a new Web Service
 Connect your GitHub repository to Render by selecting the one the contains your app from the list.
 ![render connect](https://github.com/MediaComem/comem-archioweb/raw/main/guides/images/render-03-connect.png)
 
-add build script in main package.json: `"build": "cd client && npm install && npm run build"`
+add build script in main package.json:
+
+```
+"build": "cd server && npm i && cd ../client && npm i && npm run build",
+```
+
+add start script in main package.json:
+
+```
+"start": "node server/server.js",
+```
 
 add engine in main package.json:
 
@@ -157,7 +177,7 @@ add engine in main package.json:
 }
 ```
 
-set Render build command to: `npm i; npm run build`
+set Render build command to: `npm run build`
 set Render start command to: `npm run start`
 
 ![alt text](https://github.com/ctdalton/student-registration/blob/master/renderInfo.png?raw=true)
@@ -172,9 +192,22 @@ Provide your database URL to your Render application env variables
 
 # Set up eslint
 
+in server project:
+
 ```
-npm i eslint --save-dev
+npm i eslint -D
 npm init @eslint/config
+```
+
+may need to add node to env property of .eslintrc
+
+```
+ "env": {
+    "browser": true,
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
 ```
 
 add script: `"lint": "eslint **/*.js --fix"`
