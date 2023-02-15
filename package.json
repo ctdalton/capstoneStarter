@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "your-node-version"
+    "node": "16.14.0"
   },
   "scripts": {
     "build": "cd server && npm i && cd ../client && npm i && npm run build",
