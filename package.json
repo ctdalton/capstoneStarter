@@ -12,13 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ctdalton/test.git"
+    "url": "git+https://github.com/ctdalton/capstoneStarter.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ctdalton/test/issues"
+    "url": "https://github.com/ctdalton/capstoneStarter/issues"
   },
-  "homepage": "https://github.com/ctdalton/test#readme"
+  "homepage": "https://github.com/ctdalton/capstoneStarter#readme"
 }
